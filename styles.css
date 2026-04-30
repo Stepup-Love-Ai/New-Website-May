@@ -93,7 +93,8 @@ img {
     rgba(255, 255, 255, 0.42);
   border-bottom: 1px solid rgba(255, 255, 255, 0.62);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(24px) saturate(1.22);
+  backdrop-filter: blur(14px) saturate(1.12);
+  -webkit-backdrop-filter: blur(14px) saturate(1.12);
 }
 
 .brand {
@@ -153,7 +154,8 @@ img {
     inset 0 1px 0 rgba(255, 255, 255, 0.86),
     0 12px 28px rgba(210, 96, 128, 0.1);
   cursor: pointer;
-  backdrop-filter: blur(16px) saturate(1.12);
+  backdrop-filter: blur(10px) saturate(1.08);
+  -webkit-backdrop-filter: blur(10px) saturate(1.08);
   transition:
     transform 180ms ease,
     color 180ms ease,
@@ -277,7 +279,8 @@ p {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
     0 18px 40px rgba(210, 96, 128, 0.16);
-  backdrop-filter: blur(18px) saturate(1.16);
+  backdrop-filter: blur(10px) saturate(1.08);
+  -webkit-backdrop-filter: blur(10px) saturate(1.08);
 }
 
 .button.secondary {
@@ -288,7 +291,8 @@ p {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.96),
     0 16px 36px rgba(54, 47, 58, 0.08);
-  backdrop-filter: blur(18px) saturate(1.08);
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
 }
 
 .hero-stage {
@@ -308,7 +312,8 @@ p {
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.7);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .logo-card {
@@ -351,8 +356,8 @@ p {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.7),
     0 12px 30px rgba(210, 96, 128, 0.1);
-  backdrop-filter: blur(14px) saturate(1.12);
-  -webkit-backdrop-filter: blur(14px) saturate(1.12);
+  backdrop-filter: blur(8px) saturate(1.08);
+  -webkit-backdrop-filter: blur(8px) saturate(1.08);
   transform: translateX(-50%);
 }
 
@@ -707,7 +712,8 @@ p {
   box-shadow:
     inset 0 0 0 1px rgba(65, 57, 70, 0.055),
     0 28px 74px rgba(54, 47, 58, 0.12);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .paired-screen::before {
@@ -763,7 +769,8 @@ p {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.24),
     0 34px 90px rgba(54, 47, 58, 0.2);
-  backdrop-filter: blur(22px) saturate(1.08);
+  backdrop-filter: blur(12px) saturate(1.04);
+  -webkit-backdrop-filter: blur(12px) saturate(1.04);
 }
 
 .contact-section .eyebrow,
@@ -1235,5 +1242,39 @@ p {
 
   .experience-row {
     max-width: 1180px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  #softMotion {
+    display: none;
+  }
+
+  .float-slow,
+  .float-medium,
+  .float-fast,
+  .float-soft,
+  .logo-card,
+  .logo-card img,
+  .studio-orbit::before,
+  .studio-orbit::after {
+    animation: none !important;
+  }
+
+  .phone-shot,
+  .paired-screen,
+  .orbit-card,
+  .soft-card,
+  .contact-section,
+  .site-header,
+  .button {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

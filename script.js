@@ -6,6 +6,14 @@ let height = 0;
 let pixelRatio = 1;
 let pointerX = 0;
 let pointerY = 0;
+let lastFrameTime = 0;
+let animationFrameId = 0;
+let pointerFrameId = 0;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+const lowPowerDevice =
+  reduceMotion || isCoarsePointer || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+const frameInterval = lowPowerDevice ? 1000 / 24 : 1000 / 36;
 const glowColors = [
   "224, 112, 142",
   "236, 154, 171",
@@ -14,7 +22,7 @@ const glowColors = [
 ];
 
 function resizeCanvas() {
-  pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  pixelRatio = Math.min(window.devicePixelRatio || 1, lowPowerDevice ? 1.25 : 1.5);
   width = window.innerWidth;
   height = window.innerHeight;
   canvas.width = Math.floor(width * pixelRatio);
@@ -24,7 +32,11 @@ function resizeCanvas() {
 
 function createParticles() {
   particles.length = 0;
-  const count = Math.min(34, Math.max(18, Math.floor(width / 48)));
+  if (reduceMotion) return;
+  const density = lowPowerDevice ? 92 : 64;
+  const maxCount = lowPowerDevice ? 16 : 26;
+  const minCount = lowPowerDevice ? 8 : 14;
+  const count = Math.min(maxCount, Math.max(minCount, Math.floor(width / density)));
   for (let index = 0; index < count; index += 1) {
     particles.push({
       x: Math.random() * width,
@@ -52,7 +64,11 @@ function drawHeart(x, y, size, alpha, color) {
   ctx.restore();
 }
 
-function drawParticles() {
+function drawParticles(timestamp = 0) {
+  animationFrameId = requestAnimationFrame(drawParticles);
+  if (document.hidden || timestamp - lastFrameTime < frameInterval) return;
+  lastFrameTime = timestamp;
+
   ctx.clearRect(0, 0, width, height);
   particles.forEach((particle) => {
     particle.y -= particle.speed;
@@ -74,7 +90,6 @@ function drawParticles() {
     ctx.fillStyle = `rgba(${particle.color}, ${particle.alpha})`;
     ctx.fill();
   });
-  requestAnimationFrame(drawParticles);
 }
 
 const observer = new IntersectionObserver(
@@ -210,19 +225,33 @@ languageToggle?.addEventListener("click", () => {
 });
 
 document.addEventListener("pointermove", (event) => {
+  if (lowPowerDevice) return;
   pointerX = event.clientX - width / 2;
   pointerY = event.clientY - height / 2;
-  document.querySelectorAll(".phone-shot").forEach((shot, index) => {
-    const depth = (index + 1) * 0.006;
-    shot.style.setProperty("--tilt-x", `${pointerY * depth}deg`);
-    shot.style.setProperty("--tilt-y", `${pointerX * -depth}deg`);
+  if (pointerFrameId) return;
+  pointerFrameId = requestAnimationFrame(() => {
+    document.querySelectorAll(".phone-shot").forEach((shot, index) => {
+      const depth = (index + 1) * 0.004;
+      shot.style.setProperty("--tilt-x", `${pointerY * depth}deg`);
+      shot.style.setProperty("--tilt-y", `${pointerX * -depth}deg`);
+    });
+    pointerFrameId = 0;
   });
 });
 
 resizeCanvas();
 createParticles();
-drawParticles();
+if (!reduceMotion) drawParticles();
 window.addEventListener("resize", () => {
   resizeCanvas();
   createParticles();
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden && animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = 0;
+    return;
+  }
+  if (!reduceMotion && !animationFrameId) drawParticles();
 });
