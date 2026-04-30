@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qkinteq | Luvluvdaily</title>
+    <meta
+      name="description"
+      content="qkinteq is an AI companionship studio creating Luvluvdaily, a gentle AI companion and planning experience."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="softMotion" aria-hidden="true"></canvas>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="qkinteq home">
+        <span class="brand-word">QKinteq AI</span>
+      </a>
+      <div class="header-actions">
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#studio" data-i18n="nav.company">company</a>
+          <a href="#product" data-i18n="nav.product">Luvluvdaily</a>
+          <a href="#experience" data-i18n="nav.experience">experience</a>
+          <a href="#contact" data-i18n="nav.contact">contact</a>
+        </nav>
+        <button class="language-toggle" type="button" aria-label="Switch language" aria-pressed="false">
+          <span class="language-code">EN</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <p class="eyebrow" data-i18n="hero.eyebrow">About us</p>
+          <h1 id="hero-title" data-i18n="hero.title">Build your AI companion. Live your story in real life.</h1>
+          <p data-i18n="hero.body">
+            Qkinteq builds AI-driven interactive experiences where planning, emotional connection,
+            and character storytelling become part of everyday life.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#product" data-i18n="hero.primary">Meet Luvluvdaily</a>
+            <a class="button secondary" href="#experience" data-i18n="hero.secondary">See the experience</a>
+          </div>
+        </div>
+
+        <div class="hero-stage" aria-label="Luvluvdaily product preview">
+          <figure class="logo-card float-slow reveal">
+            <figcaption data-i18n="hero.logo">Luvluv Daily</figcaption>
+            <img src="assets/luvluv-app-icon.png" alt="luvluv daily app icon" />
+          </figure>
+          <figure class="phone-shot shot-main float-medium reveal">
+            <img src="assets/luvluv-companion.png" alt="Luvluvdaily AI companion chat screen" />
+          </figure>
+          <figure class="phone-shot shot-left float-fast reveal">
+            <img src="assets/luvluv-task.png" alt="Luvluvdaily daily task screen" />
+          </figure>
+          <figure class="phone-shot shot-right float-soft reveal">
+            <img src="assets/luvluv-character.png" alt="Luvluvdaily new character screen" />
+          </figure>
+        </div>
+      </section>
+
+      <section id="studio" class="section studio-section">
+        <div class="studio-copy reveal">
+          <p class="eyebrow" data-i18n="studio.eyebrow">qkinteq AI</p>
+          <h2 data-i18n="studio.title">We bridge productivity and emotional engagement.</h2>
+          <p data-i18n="studio.body">
+            Our work combines artificial intelligence, behavioral design, and immersive
+            storytelling to create products that integrate softly into daily life.
+          </p>
+        </div>
+        <div class="studio-orbit" aria-hidden="true">
+          <div class="orbit-card reveal" data-i18n="studio.orbit1">AI conversation</div>
+          <div class="orbit-card reveal" data-i18n="studio.orbit2">behavior loops</div>
+          <div class="orbit-card reveal" data-i18n="studio.orbit3">character worlds</div>
+          <div class="orbit-card reveal" data-i18n="studio.orbit4">adaptive planning</div>
+        </div>
+      </section>
+
+      <section id="product" class="section product-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow" data-i18n="product.eyebrow">Luvluvdaily app</p>
+          <h2 data-i18n="product.title">An AI-powered companion and planning app with emotional rhythm.</h2>
+        </div>
+        <div class="product-grid">
+          <article class="soft-card reveal">
+            <span>01</span>
+            <h3 data-i18n="product.card1.title">Design your companion</h3>
+            <p data-i18n="product.card1.body">
+              Users create an AI companion with personality, appearance, and voice, making the
+              planner feel personal from the first interaction.
+            </p>
+          </article>
+          <article class="soft-card reveal">
+            <span>02</span>
+            <h3 data-i18n="product.card2.title">Plan through dialogue</h3>
+            <p data-i18n="product.card2.body">
+              Daily tasks become conversations, check-ins, encouragement, and small moments of
+              companionship instead of a flat checklist.
+            </p>
+          </article>
+          <article class="soft-card reveal">
+            <span>03</span>
+            <h3 data-i18n="product.card3.title">Unlock story progress</h3>
+            <p data-i18n="product.card3.body">
+              Completing real-life activities opens interactions, rewards, and narrative beats that
+              make routines feel meaningful.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience" class="section experience-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow" data-i18n="experience.eyebrow">experience</p>
+          <h2 data-i18n="experience.title">Soft visuals, living interfaces, and emotional feedback.</h2>
+        </div>
+        <div class="experience-flow" aria-label="Product experience pairs">
+          <article class="experience-row reveal">
+            <div class="screen-pair" aria-label="Character customization screens">
+              <figure class="paired-screen back tilt-left">
+                <img src="assets/luvluv-character.png" alt="New character screen in Luvluvdaily" />
+              </figure>
+              <figure class="paired-screen front tilt-right">
+                <img src="assets/luvluv-art-style.png" alt="Choose art style screen in Luvluvdaily" />
+              </figure>
+            </div>
+            <div class="experience-copy">
+              <p class="eyebrow" data-i18n="experience.row1.eyebrow">personal companion</p>
+              <h3 data-i18n="experience.row1.title">Customize your AI Character.</h3>
+              <p data-i18n="experience.row1.body">
+                Users shape the companion's look, style, and presence before the relationship begins,
+                making productivity feel personal from the first interaction.
+              </p>
+            </div>
+          </article>
+
+          <article class="experience-row reverse reveal">
+            <div class="screen-pair" aria-label="Conversation and timer screens">
+              <figure class="paired-screen back tilt-right">
+                <img src="assets/luvluv-companion.png" alt="AI companion chat screen in Luvluvdaily" />
+              </figure>
+              <figure class="paired-screen front tilt-left">
+                <img src="assets/luvluv-timer.png" alt="Estimated work time screen in Luvluvdaily" />
+              </figure>
+            </div>
+            <div class="experience-copy">
+              <p class="eyebrow" data-i18n="experience.row2.eyebrow">daily rhythm</p>
+              <h3 data-i18n="experience.row2.title">Planning turns into dialogue.</h3>
+              <p data-i18n="experience.row2.body">
+                Conversations, focus sessions, and gentle check-ins work together so tasks feel supported
+                instead of isolated.
+              </p>
+            </div>
+          </article>
+
+          <article class="experience-row reveal">
+            <div class="screen-pair" aria-label="Task and chapter progression screens">
+              <figure class="paired-screen back tilt-left">
+                <img src="assets/luvluv-task.png" alt="Daily task screen in Luvluvdaily" />
+              </figure>
+              <figure class="paired-screen front tilt-right">
+                <img src="assets/luvluv-chapters.png" alt="Chapter progression screen in Luvluvdaily" />
+              </figure>
+            </div>
+            <div class="experience-copy">
+              <p class="eyebrow" data-i18n="experience.row3.eyebrow">story progress</p>
+              <h3 data-i18n="experience.row3.title">Real routines unlock narrative.</h3>
+              <p data-i18n="experience.row3.body">
+                Your life is the main storyline. Completing daily activities opens new story
+                beats, rewards, and companion moments, giving everyday goals a sense of emotional
+                progress.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section reveal">
+        <p class="eyebrow" data-i18n="contact.eyebrow">next generation companionship</p>
+        <h2 data-i18n="contact.title">We'd love to hear from you</h2>
+        <p class="contact-note" data-i18n="contact.note">
+          Whether you're a user, collaborator, or just curious about what we're building at Qkinteq.
+        </p>
+        <a class="button primary" href="mailto:contact@qkinteq.com">contact@qkinteq.com</a>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
