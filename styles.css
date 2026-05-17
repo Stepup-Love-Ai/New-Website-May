@@ -376,9 +376,10 @@ p {
   position: absolute;
   overflow: hidden;
   padding: 10px;
-  --tilt-x: 0deg;
-  --tilt-y: 0deg;
   --base-rotate: 0deg;
+  --float-x: 0px;
+  --float-y: -10px;
+  --float-rotate: 0.8deg;
   border-radius: 34px;
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(242, 239, 237, 0.92)),
@@ -388,6 +389,10 @@ p {
     inset 0 0 0 1px rgba(65, 57, 70, 0.08),
     inset 0 -16px 30px rgba(65, 57, 70, 0.045),
     0 28px 80px rgba(54, 47, 58, 0.14);
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0) rotate(var(--base-rotate));
+  transform-style: flat;
+  will-change: transform;
 }
 
 .phone-shot::before {
@@ -414,8 +419,10 @@ p {
 }
 
 .phone-shot img {
+  display: block;
   width: 100%;
   border-radius: 26px;
+  transform: translateZ(0);
 }
 
 .shot-main {
@@ -423,6 +430,9 @@ p {
   left: 34%;
   z-index: 3;
   width: min(280px, 32vw);
+  --float-x: 4px;
+  --float-y: -10px;
+  --float-rotate: 0.65deg;
 }
 
 .shot-left {
@@ -431,6 +441,9 @@ p {
   z-index: 2;
   width: min(210px, 24vw);
   --base-rotate: -4deg;
+  --float-x: -5px;
+  --float-y: -8px;
+  --float-rotate: 0.55deg;
 }
 
 .shot-right {
@@ -440,10 +453,13 @@ p {
   width: min(200px, 23vw);
   opacity: 0.82;
   --base-rotate: 3deg;
+  --float-x: 5px;
+  --float-y: -7px;
+  --float-rotate: -0.55deg;
 }
 
 .float-slow {
-  animation: float 8s ease-in-out infinite;
+  animation: float 11s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 .logo-card.float-slow {
@@ -451,27 +467,26 @@ p {
 }
 
 .float-medium {
-  animation: float 7s ease-in-out infinite 400ms;
+  animation: float 12s cubic-bezier(0.45, 0, 0.55, 1) infinite 120ms;
 }
 
 .float-fast {
-  animation: float 6s ease-in-out infinite 800ms;
+  animation: float 10.5s cubic-bezier(0.45, 0, 0.55, 1) infinite 560ms;
 }
 
 .float-soft {
-  animation: float 9s ease-in-out infinite 1200ms;
+  animation: float 13.5s cubic-bezier(0.45, 0, 0.55, 1) infinite 900ms;
 }
 
 @keyframes float {
   0%,
   100% {
-    transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translate3d(0, 0, 0)
-      rotate(calc(var(--base-rotate) - 1deg));
+    transform: translate3d(0, 0, 0) rotate(var(--base-rotate));
   }
 
   50% {
-    transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))
-      translate3d(0, -18px, 0) rotate(calc(var(--base-rotate) + 1deg));
+    transform: translate3d(var(--float-x), var(--float-y), 0)
+      rotate(calc(var(--base-rotate) + var(--float-rotate)));
   }
 }
 
